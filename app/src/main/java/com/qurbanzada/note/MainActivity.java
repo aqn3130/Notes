@@ -62,28 +62,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             case R.id.action_delete_all:
                 deleteAllNotes();
                 break;
-            case R.id.action_export:
-                exportNotes();
-                break;
         }
         return super.onOptionsItemSelected(item);
     }
-    //Export notes
-    private void exportNotes() {
-        DialogInterface.OnClickListener dl = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int button) {
-                if(button == DialogInterface.BUTTON_POSITIVE){
-
-                    Toast.makeText(MainActivity.this,getString(R.string.notes_export),Toast.LENGTH_SHORT).show();
-
-
-                }
-            }
-        };
-        dialogBuilder(dl);
-    }
-
     private void deleteAllNotes() {
         DialogInterface.OnClickListener dialogClickListener =
                 new DialogInterface.OnClickListener() {
@@ -91,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     public void onClick(DialogInterface dialog, int button) {
                         if (button == DialogInterface.BUTTON_POSITIVE) {
                             //Insert Data management code here
-//                            getContentResolver().delete(NoteProvider.CONTENT_URI,null,null);
-//                            restartLoader();
+                            getContentResolver().delete(NoteProvider.CONTENT_URI,null,null);
+                            restartLoader();
 
                             Toast.makeText(MainActivity.this,
                                     getString(R.string.all_deleted),
